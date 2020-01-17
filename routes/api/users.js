@@ -60,7 +60,7 @@ async (req, res) => {
         // Return the jsonwebtoken
         const payload = {
             user: {
-                id: user._id
+                id: user.id
             }
         };
 

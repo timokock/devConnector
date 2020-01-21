@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import Alert from '../layout/Alert';
 import { Provider } from 'react-redux';
@@ -29,7 +30,7 @@ const Register = (props) => {
         if(password !== password2) {
             props.setAlert('Password do not match', 'danger', 3000);
         } else {
-            console.log('SUCCESS');
+            props.register({ name, email, password });
         };
     }
 
@@ -48,7 +49,7 @@ const Register = (props) => {
                     name="name" 
                     value={name}
                     onChange={e => onChange(e)}
-                    required 
+                    //required 
                     />
                 </div>
                 {/* EMAIL FIELD */}
@@ -59,7 +60,7 @@ const Register = (props) => {
                     name="email"
                     value={email}
                     onChange={e => onChange(e)}
-                    required 
+                    //required 
                     />
                     <small className="form-text">{gravatarAdvice}</small>
                 </div>
@@ -69,10 +70,10 @@ const Register = (props) => {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    minLength="6"
+                    //minLength="6"
                     value={password}
                     onChange={e => onChange(e)}
-                    required
+                    //required
                     />
                 </div>
                 {/* PASSWORD2 FIELD */}            
@@ -81,10 +82,10 @@ const Register = (props) => {
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
-                    minLength="6"
+                    //minLength="6"
                     value={password2}
                     onChange={e => onChange(e)}
-                    required
+                    //required
                     />
                 </div>
                 {/* SUBMIT BUTTON */}
@@ -102,6 +103,7 @@ const Register = (props) => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import Alert from '../layout/Alert';
+import { Provider } from 'react-redux';
+import store from '../../store';
 
-const Register = () => {
+
+const Register = (props) => {
 
     const gravatarAdvice = "This site uses Gravatar so if you want a profile image, use a Gravatar email";
 
@@ -20,74 +27,81 @@ const Register = () => {
         e.preventDefault();
 
         if(password !== password2) {
-            console.log('Password do not match');
+            props.setAlert('Password do not match', 'danger', 3000);
         } else {
             console.log('SUCCESS');
         };
     }
 
     return (
-        <section className="container">
-            <h1 className="large text-primary">Sign Up</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-            <form className="form" onSubmit={e => onSubmit(e)}>
-            {/* NAME FIELD */}
-            <div className="form-group">
+        <Provider store={store}>
+            <section className="container">
+                <Alert />
+                <h1 className="large text-primary">Sign Up</h1>
+                <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+                <form className="form" onSubmit={e => onSubmit(e)}>
+                {/* NAME FIELD */}
+                <div className="form-group">
+                    <input 
+                    type="text" 
+                    placeholder="Name" 
+                    name="name" 
+                    value={name}
+                    onChange={e => onChange(e)}
+                    required 
+                    />
+                </div>
+                {/* EMAIL FIELD */}
+                <div className="form-group">
+                    <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    name="email"
+                    value={email}
+                    onChange={e => onChange(e)}
+                    required 
+                    />
+                    <small className="form-text">{gravatarAdvice}</small>
+                </div>
+                {/* PASSWORD FIELD */}
+                <div className="form-group">
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    minLength="6"
+                    value={password}
+                    onChange={e => onChange(e)}
+                    required
+                    />
+                </div>
+                {/* PASSWORD2 FIELD */}            
+                <div className="form-group">
+                    <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="password2"
+                    minLength="6"
+                    value={password2}
+                    onChange={e => onChange(e)}
+                    required
+                    />
+                </div>
+                {/* SUBMIT BUTTON */}
                 <input 
-                type="text" 
-                placeholder="Name" 
-                name="name" 
-                value={name}
-                onChange={e => onChange(e)}
-                required 
+                type="submit" 
+                className="btn btn-primary" 
+                value="Register" 
                 />
-            </div>
-            {/* EMAIL FIELD */}
-            <div className="form-group">
-                <input 
-                type="email" 
-                placeholder="Email Address" 
-                name="email"
-                value={email}
-                onChange={e => onChange(e)}
-                required 
-                />
-                <small className="form-text">{gravatarAdvice}</small>
-            </div>
-            {/* PASSWORD FIELD */}
-            <div className="form-group">
-                <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                minLength="6"
-                value={password}
-                onChange={e => onChange(e)}
-                required
-                />
-            </div>
-            {/* PASSWORD2 FIELD */}            
-            <div className="form-group">
-                <input
-                type="password"
-                placeholder="Confirm Password"
-                name="password2"
-                minLength="6"
-                value={password2}
-                onChange={e => onChange(e)}
-                required
-                />
-            </div>
-            {/* SUBMIT BUTTON */}
-            <input 
-            type="submit" 
-            className="btn btn-primary" 
-            value="Register" 
-            />
-            </form>
-            <p className="my-1"> Already have an account? <Link to="/login">Sign In</Link></p>
-        </section>
+                </form>
+                <p className="my-1"> Already have an account? <Link to="/login">Sign In</Link></p>
+            </section>
+        </Provider>
     )
 };
 
-export default Register;
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);

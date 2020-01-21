@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Login = () => {
     return (
@@ -6,6 +6,6 @@ const Login = () => {
             <h1>Login Comp</h1>
         </section>
     )
-}
+};
 
-export default Login
+export default Login;

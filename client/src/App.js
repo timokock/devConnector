@@ -24,6 +24,12 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
+  // Checking if page is reloading
+  if(document.readyState === 'loading') {
+    alert('Page is reloading');
+  };
+  
+
   return(
   <Provider store={store}>
     <Router>

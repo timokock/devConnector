@@ -61,8 +61,10 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const onSubmit = e => {
+        const element = document.querySelector('.large');   
         e.preventDefault();
         createProfile(formData, history, true);
+        element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     };
 
     return (

@@ -43,7 +43,7 @@ const AddExperience = ({ addExperience, history }) => {
                     <input type="date" name="from" value={from} onChange={e => onChange(e)} pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" vaue={Date.now}/>
                 </div>
                 <div className="form-group">
-                    <p><input type="checkbox" name="current" value="" checked={current} value={current} onChange={e => {setFormData({...formData, current: !current}); toogleDisabled(!toDateDisabled)}} /> {' '}Current Job</p>
+                    <p><input type="checkbox" name="current" checked={current} value={current} onChange={e => {setFormData({...formData, current: !current}); toogleDisabled(!toDateDisabled)}} /> {' '}Current</p>
                 </div>
                 <div className="form-group">
                     <h4>To Date</h4>
@@ -63,4 +63,4 @@ AddExperience.propTypes = {
     addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(AddExperience);
+export default connect(null, { addExperience })(withRouter(AddExperience));

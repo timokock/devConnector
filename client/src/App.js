@@ -28,9 +28,9 @@ const App = () => {
   }, []);
 
   // Checking if page is reloading
-  if(document.readyState === 'loading') {
-    alert('Page is reloading');
-  };
+  //if(document.readyState === 'loading') {
+  //  alert('Page is reloading');
+  //};
   
 
   return(

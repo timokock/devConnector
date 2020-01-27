@@ -7,6 +7,7 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth, match }) => {
@@ -19,7 +20,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth, match })
             {profile === null || loading ? <Spinner /> : <Fragment>
                 <Link to='/profiles' className='btn btn-light'>Back To Profiles</Link>
                 {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id && (<Link to='/edit-profile' className='btn btn-dark'>Edit Profile</Link>)}
-                <div class="profile-grid my-1">
+                <div className="profile-grid my-1">
                     <ProfileTop profile={profile} />
                     <ProfileAbout profile={profile} />
                     <div className="profile-exp bg-white p-2">
@@ -38,6 +39,11 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth, match })
                             ))}
                             </Fragment>) : (<h4>No education credentials available</h4>)}
                     </div>
+
+                    {profile.githubusername && (
+                        <ProfileGithub username={profile.githubusername}/>
+                    )}
+
                 </div>
                 </Fragment>}
         </div>

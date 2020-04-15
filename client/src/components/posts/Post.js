@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
+import Alert from '../layout/Alert';
 import { getPosts } from '../../actions/post';
 
 
@@ -14,6 +15,7 @@ const Post = ({ getPosts, post: { posts, loading } }) => {
     return loading ? <Spinner /> : (
         <Fragment>
             <section className="container">
+            <Alert />
                 <h1 className="large text-primary">Posts</h1>
                 <p className="lead"><i className="fas fa-user"></i> Welcome to the community</p>
                 {/* PostForm */}

@@ -100,7 +100,7 @@ router.delete('/:id', auth, async (req, res) => {
         
         if(err.kind === 'ObjectId') {
             return res.status(404).json({ msg: 'Post not found' });
-        }            
+        }           
     }
 });
 

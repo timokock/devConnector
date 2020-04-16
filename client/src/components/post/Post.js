@@ -6,6 +6,7 @@ import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
 import { getPost } from '../../actions/post';
 import Alert from '../layout/Alert';
+import CommentForm from '../post/CommentForm';
 
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
@@ -19,6 +20,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
             <Alert />
             <Link to='/posts' className='btn'>Back To Posts</Link>
             <PostItem post={post} showActions={false}/>
+            <CommentForm postID={post._id} />
             </section>
         </Fragment>
     )
